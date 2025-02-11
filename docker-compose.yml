@@ -1,0 +1,28 @@
+services:
+  java-app:
+    build:
+      context: ./src/main/java
+      dockerfile: ./Dockerfile
+    container_name: java-app
+    volumes:
+      - ./app:/usr/src/app
+    working_dir: /usr/src/app
+    command: ["java", "-jar", "RM2.0-0.0.1-SNAPSHOT.jar"]
+    ports:
+      - "8080:8080"
+  
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: learn_java
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306" # ローカルのmysqlが3306を私用するのでdockerのホスト側を 3307 に変更
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
