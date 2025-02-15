@@ -3,7 +3,7 @@ services:
     build:
       context: ./src/main/java
       dockerfile: ./Dockerfile
-    container_name: java-app
+    container_name: java-app-java1
     volumes:
       - ./app:/usr/src/app
     working_dir: /usr/src/app
@@ -13,7 +13,7 @@ services:
   
   mysql:
     image: mysql:8.0
-    container_name: mysql
+    container_name: mysql-java1
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: learn_java
